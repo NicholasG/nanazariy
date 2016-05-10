@@ -1,6 +1,6 @@
 package com.kursova.gui;
 
-import com.kursova.domain.Shop;
+import com.kursova.domain.Developer;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
@@ -17,14 +17,14 @@ public class ShopsTableModel extends AbstractTableModel {
     private final String[] columns = { "ID", "Назва", "Адреса",
             "Телефон", "Директор", "Вебсайт", "Розклад" };
 
-    private List<Shop> shops;
-    private List<Shop> oldShops = new ArrayList<>();
+    private List<Developer> developers;
+    private List<Developer> oldDevelopers = new ArrayList<>();
 
     private static String oldSearch = "";
 
-    public ShopsTableModel( List<Shop> shops ) {
-        this.shops = shops;
-        this.oldShops.addAll( shops );
+    public ShopsTableModel( List<Developer> developers ) {
+        this.developers = developers;
+        this.oldDevelopers.addAll( developers );
         getSorted();
 
     }
@@ -32,21 +32,21 @@ public class ShopsTableModel extends AbstractTableModel {
     private void getSorted() {
         //region Ініціалізація сортування
         //Сортування по назві
-        Comparator<Shop> shopComparator = ( o1, o2 ) -> o1.getName().compareToIgnoreCase( o2.getName() );
-        this.shops.sort( shopComparator );
-        this.oldShops.sort( shopComparator );
+        Comparator<Developer> shopComparator = ( o1, o2 ) -> o1.getBrand().compareToIgnoreCase( o2.getBrand() );
+        this.developers.sort( shopComparator );
+        this.oldDevelopers.sort( shopComparator );
         //endregion
     }
 
     public void search( String name ) {
         //region Пошук товару по назві
         //Якщо користувач видалив символ з поля пошуку, то пошук здійснюється по всіх елементах повторно
-        this.shops = oldSearch.length() > name.length() ? oldShops : this.shops;
+        this.developers = oldSearch.length() > name.length() ? oldDevelopers : this.developers;
 
         //Якщо @name порожнє, то поточним списком магазинів стає старий список всіх магазинів
-        if ( name.equals( "" ) ) this.shops = oldShops;
-        else this.shops = this.shops.stream()
-                .filter( s -> s.getName().toLowerCase()
+        if ( name.equals( "" ) ) this.developers = oldDevelopers;
+        else this.developers = this.developers.stream()
+                .filter( s -> s.getBrand().toLowerCase()
                         .startsWith( name.toLowerCase() ) )
                 .collect( Collectors.toList() );
         oldSearch = name;
@@ -54,23 +54,23 @@ public class ShopsTableModel extends AbstractTableModel {
         fireTableStructureChanged();
     }
 
-    public void addShop( Shop shop ) {
+    public void addShop( Developer developer ) {
         //region Додавання нового елемента
-        shops.add( shop );
-        oldShops.add( shop );
+        developers.add( developer );
+        oldDevelopers.add( developer );
         //endregion
         getSorted();
         fireTableDataChanged();
     }
 
-    public void updateShop( Shop shop ) {
+    public void updateShop( Developer developer ) {
         //region Заміна старого елемента на новий
-        UnaryOperator<Shop> shopUnaryOperator = s -> {
-            if ( s.getId() == shop.getId() ) return shop;
+        UnaryOperator<Developer> shopUnaryOperator = s -> {
+            if ( s.getId() == developer.getId() ) return developer;
             else return s;
         };
-        shops.replaceAll( shopUnaryOperator );
-        oldShops.replaceAll( shopUnaryOperator );
+        developers.replaceAll( shopUnaryOperator );
+        oldDevelopers.replaceAll( shopUnaryOperator );
         //endregion
         getSorted();
         fireTableDataChanged();
@@ -78,23 +78,23 @@ public class ShopsTableModel extends AbstractTableModel {
 
     public void removeRow( int rowIndex ) {
         //region Видалення елемента
-        oldShops.remove( shops.get( rowIndex ) );
-        shops.remove( rowIndex );
+        oldDevelopers.remove( developers.get( rowIndex ) );
+        developers.remove( rowIndex );
         //endregion
         fireTableRowsDeleted( rowIndex, rowIndex );
     }
 
-    public Shop getShopFromRow( int rowIndex ) {
-        return shops.get( rowIndex );
+    public Developer getShopFromRow( int rowIndex ) {
+        return developers.get( rowIndex );
     }
 
     public void refreshTable() {
-        fireTableRowsUpdated( 0, shops.size() );
+        fireTableRowsUpdated( 0, developers.size() );
     }
 
     @Override
     public int getRowCount() {
-        return shops.size();
+        return developers.size();
     }
 
     @Override
@@ -105,22 +105,22 @@ public class ShopsTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt( int rowIndex, int columnIndex ) {
         //region Витягування значення з комірки
-        Shop s = shops.get( rowIndex );
+        Developer s = developers.get( rowIndex );
         switch ( columnIndex ) {
             case 0:
                 return String.valueOf( s.getId() );
             case 1:
-                return s.getName();
+                return s.getBrand();
             case 2:
                 return s.getAddress();
             case 3:
                 return s.getPhone();
             case 4:
-                return s.getChief();
+                return s.getFounder();
             case 5:
                 return s.getSite();
             case 6:
-                return s.getSchedule();
+                return s.getRating();
             default:
                 return null;
         }

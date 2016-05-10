@@ -1,7 +1,7 @@
 package com.kursova.gui;
 
-import com.kursova.dao.ShopDAO;
-import com.kursova.domain.Shop;
+import com.kursova.dao.DeveloperDAO;
+import com.kursova.domain.Developer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,29 +25,29 @@ public class AddNewShop extends JDialog {
     private JButton buttonSave;
     private JButton buttonCancel;
 
-    private ShopDAO dao = new ShopDAO();
+    private DeveloperDAO dao = new DeveloperDAO();
 
-    private Shop shop;
+    private Developer developer;
 
     public AddNewShop( Frame owner ) {
         super( owner );
         initComponents();
     }
 
-    public AddNewShop( Frame owner, Shop shop ) {
+    public AddNewShop( Frame owner, Developer developer ) {
         super( owner );
-        this.shop = shop;
+        this.developer = developer;
         initComponents();
         initializeTextFields();
     }
 
     private void initializeTextFields() {
-        textFieldName.setText( shop.getName() );
-        textFieldAddress.setText( shop.getAddress() );
-        textFieldPhone.setText( shop.getPhone() );
-        textFieldChief.setText( shop.getChief() );
-        textFieldSite.setText( shop.getSite() );
-        textFieldSchedule.setText( shop.getSchedule() );
+        textFieldName.setText( developer.getBrand() );
+        textFieldAddress.setText( developer.getAddress() );
+        textFieldPhone.setText( developer.getPhone() );
+        textFieldChief.setText( developer.getFounder() );
+        textFieldSite.setText( developer.getSite() );
+        textFieldSchedule.setText( developer.getRating() );
     }
 
     public AddNewShop( Dialog owner ) {
@@ -60,24 +60,24 @@ public class AddNewShop extends JDialog {
     }
 
     private void buttonSaveActionPerformed( ActionEvent e ) {
-        if ( this.shop != null ) {
-            getShop( this.shop );
+        if ( this.developer != null ) {
+            getShop( this.developer );
             try {
-                dao.updateShop( shop );
+                dao.updateDeveloper( developer );
                 ShopsTableModel model = ( ShopsTableModel ) MainView.tableShop.getModel();
-                model.updateShop( shop );
+                model.updateShop( developer );
                 this.dispose();
             } catch ( SQLException e1 ) {
                 e1.printStackTrace();
             }
         } else {
-            Shop shop = new Shop();
-            getShop( shop );
+            Developer developer = new Developer();
+            getShop( developer );
             try {
-                int newId = dao.insertShop( shop );
-                shop.setId( newId );
+                int newId = dao.insertDeveloper( developer );
+                developer.setId( newId );
                 ShopsTableModel model = ( ShopsTableModel ) MainView.tableShop.getModel();
-                model.addShop( shop );
+                model.addShop( developer );
                 this.dispose();
             } catch ( SQLException e1 ) {
                 e1.printStackTrace();
@@ -85,13 +85,13 @@ public class AddNewShop extends JDialog {
         }
     }
 
-    private void getShop( Shop shop ) {
-        shop.setName( textFieldName.getText() );
-        shop.setAddress( textFieldAddress.getText() );
-        shop.setPhone( textFieldPhone.getText() );
-        shop.setChief( textFieldChief.getText() );
-        shop.setSite( textFieldSite.getText() );
-        shop.setSchedule( textFieldSchedule.getText() );
+    private void getShop( Developer developer ) {
+        developer.setBrand( textFieldName.getText() );
+        developer.setAddress( textFieldAddress.getText() );
+        developer.setPhone( textFieldPhone.getText() );
+        developer.setFounder( textFieldChief.getText() );
+        developer.setSite( textFieldSite.getText() );
+        developer.setRating( textFieldSchedule.getText() );
     }
 
     private void initComponents() {

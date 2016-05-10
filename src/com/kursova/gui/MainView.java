@@ -1,7 +1,7 @@
 package com.kursova.gui;
 
-import com.kursova.dao.ShopDAO;
-import com.kursova.domain.Shop;
+import com.kursova.dao.DeveloperDAO;
+import com.kursova.domain.Developer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,8 +46,8 @@ public class MainView extends JFrame {
 
     private void buttonEditTBActionPerformed( ActionEvent e ) {
         int selectedRow = tableShop.getSelectedRow();
-        Shop shop = tableModel.getShopFromRow( selectedRow );
-        AddNewShop newShop = new AddNewShop( this, shop );
+        Developer developer = tableModel.getShopFromRow( selectedRow );
+        AddNewShop newShop = new AddNewShop( this, developer );
         newShop.setVisible( true );
     }
 
@@ -57,8 +57,8 @@ public class MainView extends JFrame {
                 JOptionPane.YES_NO_OPTION );
         if ( confirmDialog == JOptionPane.YES_OPTION ) try {
             int selectedRow = tableShop.getSelectedRow();
-            Shop shop = tableModel.getShopFromRow( selectedRow );
-            new ShopDAO().deleteShop( shop.getId() );
+            Developer developer = tableModel.getShopFromRow( selectedRow );
+            new DeveloperDAO().deleteDeveloper( developer.getId() );
             tableModel.removeRow( selectedRow );
         } catch ( SQLException e1 ) {
             e1.printStackTrace();
@@ -203,9 +203,9 @@ public class MainView extends JFrame {
 
     private ShopsTableModel getShopsTableModel() {
         try {
-            ShopDAO dao = new ShopDAO();
-            final List<Shop> shops = dao.findAll();
-            return new ShopsTableModel( shops );
+            DeveloperDAO dao = new DeveloperDAO();
+            final List<Developer> developers = dao.findAll();
+            return new ShopsTableModel( developers );
         } catch ( Exception e ) {
             e.printStackTrace();
             JOptionPane.showMessageDialog( this, "Не вдалося ініціалізувати таблицю магазинів: " + e.getMessage() );

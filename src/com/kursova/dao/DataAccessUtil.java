@@ -5,7 +5,7 @@ import java.sql.*;
 final class DataAccessUtil {
 
     private static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";
-    private static final String CONNECTION_URL = "jdbc:mysql://127.0.0.1:3306/mydb";
+    private static final String CONNECTION_URL = "jdbc:mysql://127.0.0.1:3306/nanazariy";
     private static final String CONNECTION_USERNAME = "root";
     private static final String CONNECTION_PASSWORD = "1111";
 

@@ -1,7 +1,7 @@
 package com.kursova.gui;
 
-import com.kursova.dao.GoodDAO;
-import com.kursova.domain.Good;
+import com.kursova.dao.ModelDAO;
+import com.kursova.domain.Model;
 
 import javax.swing.*;
 import java.awt.*;
@@ -64,8 +64,8 @@ public class Goods extends JDialog {
     private void openEditForm() throws SQLException {
         int selectedRow = table.getSelectedRow();
         int id = tableModel.getGoodFromRow( selectedRow ).getId();
-        Good good = new GoodDAO().findById( id );
-        AddNewGood newGood = new AddNewGood( this, good );
+        Model model = new ModelDAO().findById( id );
+        AddNewGood newGood = new AddNewGood( this, model );
         newGood.setVisible( true );
     }
 
@@ -76,7 +76,7 @@ public class Goods extends JDialog {
         if ( confirmDialog == JOptionPane.YES_OPTION ) try {
             int selectedRow = table.getSelectedRow();
             int goodId = tableModel.getGoodFromRow( selectedRow ).getId();
-            new GoodDAO().deleteGoodFromShop( shopId, goodId );
+            new ModelDAO().deleteGoodFromShop( shopId, goodId );
             tableModel.removeRow( selectedRow );
         } catch ( SQLException e1 ) {
             e1.printStackTrace();

@@ -1,7 +1,7 @@
 package com.kursova.gui;
 
-import com.kursova.dao.GoodDAO;
-import com.kursova.domain.Good;
+import com.kursova.dao.ModelDAO;
+import com.kursova.domain.Model;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,8 +32,8 @@ public class AddNewGood extends JDialog {
     private JButton buttonCancel;
     private JLabel labelSpec;
 
-    private Good good = null;
-    private GoodDAO dao = new GoodDAO();
+    private Model model = null;
+    private ModelDAO dao = new ModelDAO();
 
     public AddNewGood( Frame owner ) {
         super( owner );
@@ -45,23 +45,23 @@ public class AddNewGood extends JDialog {
         initComponents();
     }
 
-    public AddNewGood( Dialog owner, Good good ) {
+    public AddNewGood( Dialog owner, Model model ) {
         super( owner );
-        this.good = good;
+        this.model = model;
         initComponents();
-        initializeTextFields( this.good );
+        initializeTextFields( this.model );
     }
 
-    private void initializeTextFields( Good good ) {
-        textFieldName.setText( good.getName() );
-        textFieldType.setText( good.getType() );
-        textFieldArticle.setText( good.getArticle() );
-        textFieldPrice.setText( String.valueOf( good.getPrice() ) );
-        textFieldScale.setText( good.getScale() );
-        textFieldAmount.setText( String.valueOf( good.getAmount() ) );
-        textFieldColor.setText( good.getColor() );
-        textFieldManufacturer.setText( good.getManufacturer() );
-        textAreaSpec.setText( good.getSpecifications() );
+    private void initializeTextFields( Model model ) {
+        textFieldName.setText( model.getModel() );
+        textFieldType.setText( model.getSerial() );
+        textFieldArticle.setText( model.getDate() );
+        textFieldPrice.setText( String.valueOf( model.getPrice() ) );
+        textFieldScale.setText( model.getScale() );
+        textFieldAmount.setText( String.valueOf( model.getAmount() ) );
+        textFieldColor.setText( model.getColor() );
+        textFieldManufacturer.setText( model.getType() );
+        textAreaSpec.setText( model.getArchitecture() );
     }
 
     private void buttonCancelActionPerformed( ActionEvent e ) {
@@ -69,21 +69,21 @@ public class AddNewGood extends JDialog {
     }
 
     private void buttonSaveActionPerformed( ActionEvent e ) {
-        if ( this.good != null ) {
-            getGood( this.good );
+        if ( this.model != null ) {
+            getGood( this.model );
             try {
-                dao.updateGood( good );
+                dao.updateModel( model );
                 GoodsTableModel model = ( GoodsTableModel ) Goods.table.getModel();
-                model.updateGood( good );
+                model.updateGood( this.model );
                 this.dispose();
             } catch ( SQLException e1 ) {
                 e1.printStackTrace();
             }
         } else {
-            Good good = new Good();
+            Model good = new Model();
             getGood( good );
             try {
-                int newId = dao.insertGood( good );
+                int newId = dao.insertModel( good );
                 good.setId( newId );
                 dao.insertGoodIntoShop( good.getId(), Goods.shopId );
                 GoodsTableModel model = ( GoodsTableModel ) Goods.table.getModel();
@@ -95,16 +95,16 @@ public class AddNewGood extends JDialog {
         }
     }
 
-    private void getGood( Good good ) {
-        good.setName( textFieldName.getText() );
-        good.setType( textFieldType.getText() );
-        good.setArticle( textFieldArticle.getText() );
-        good.setPrice( Float.parseFloat( textFieldPrice.getText() ) );
-        good.setScale( textFieldScale.getText() );
-        good.setAmount( Integer.parseInt( textFieldAmount.getText() ) );
-        good.setColor( textFieldColor.getText() );
-        good.setManufacturer( textFieldManufacturer.getText() );
-        good.setSpecifications( textAreaSpec.getText() );
+    private void getGood( Model model ) {
+        model.setModel( textFieldName.getText() );
+        model.setSerial( textFieldType.getText() );
+        model.setDate( textFieldArticle.getText() );
+        model.setPrice( Float.parseFloat( textFieldPrice.getText() ) );
+        model.setScale( textFieldScale.getText() );
+        model.setAmount( Integer.parseInt( textFieldAmount.getText() ) );
+        model.setColor( textFieldColor.getText() );
+        model.setType( textFieldManufacturer.getText() );
+        model.setArchitecture( textAreaSpec.getText() );
     }
 
     private void initComponents() {

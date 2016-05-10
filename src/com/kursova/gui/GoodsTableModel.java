@@ -1,7 +1,7 @@
 package com.kursova.gui;
 
-import com.kursova.dao.GoodDAO;
-import com.kursova.domain.Good;
+import com.kursova.dao.ModelDAO;
+import com.kursova.domain.Model;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -16,36 +16,36 @@ import java.util.stream.Collectors;
  */
 public class GoodsTableModel extends AbstractTableModel {
 
-    private static final GoodDAO goodDAO = new GoodDAO();
+    private static final ModelDAO DEVELOPER_DAO = new ModelDAO();
 
     private final String[] columns = { "ID", "Назва", "Тип",
             "Виробник", "Артикул", "Ціна",
             "Од. вимір.", "Кількість", "Колір", "Опис" };
 
-    private List<Good> goods;
-    private List<Good> oldGoods = new ArrayList<>();
+    private List<Model> models;
+    private List<Model> oldModels = new ArrayList<>();
 
     private static String oldSearch = "";
 
-    public GoodsTableModel( List<Good> goods ) {
-        this.goods = goods;
-        this.oldGoods.addAll( goods );
+    public GoodsTableModel( List<Model> models ) {
+        this.models = models;
+        this.oldModels.addAll( models );
         getSorted();
     }
 
     private void getSorted() {
         //region Ініціалізація сортування
         //Сортування по назві
-        Comparator<Good> goodComparator = ( o1, o2 ) -> o1.getName().compareToIgnoreCase( o2.getName() );
-        this.goods.sort( goodComparator );
-        this.oldGoods.sort( goodComparator );
+        Comparator<Model> goodComparator = ( o1, o2 ) -> o1.getModel().compareToIgnoreCase( o2.getModel() );
+        this.models.sort( goodComparator );
+        this.oldModels.sort( goodComparator );
         //endregion
     }
 
     public static GoodsTableModel getGoodsTableModel( int shopId ) {
         try {
-            java.util.List<Good> goods = goodDAO.findAllGoodsByShopId( shopId );
-            return new GoodsTableModel( goods );
+            java.util.List<Model> models = DEVELOPER_DAO.findAllGoodsByShopId( shopId );
+            return new GoodsTableModel( models );
         } catch ( Exception e ) {
             e.printStackTrace();
             JOptionPane.showMessageDialog( null, "Не вдалося ініціалізувати таблицю товарів: " + e.getMessage() );
@@ -55,8 +55,8 @@ public class GoodsTableModel extends AbstractTableModel {
 
     public static GoodsTableModel getGoodsTableModel() {
         try {
-            final java.util.List<Good> goods = goodDAO.findAll();
-            return new GoodsTableModel( goods );
+            final java.util.List<Model> models = DEVELOPER_DAO.findAll();
+            return new GoodsTableModel( models );
         } catch ( Exception e ) {
             e.printStackTrace();
             JOptionPane.showMessageDialog( null, "Не вдалося ініціалізувати таблицю товарів: " + e.getMessage() );
@@ -67,11 +67,11 @@ public class GoodsTableModel extends AbstractTableModel {
     public void search( String name ) {
         //region Пошук товару по назві
         //Якщо користувач видалив символ з поля пошуку, то пошук здійснюється по всіх елементах повторно
-        goods = oldSearch.length() > name.length() ? oldGoods : goods;
+        models = oldSearch.length() > name.length() ? oldModels : models;
         //Якщо @name порожнє, то поточним списком товарів стає старий список всіх товарів
-        if ( name.equals( "" ) ) goods = oldGoods;
-        else goods = goods.stream()
-                .filter( g -> g.getName().toLowerCase()
+        if ( name.equals( "" ) ) models = oldModels;
+        else models = models.stream()
+                .filter( g -> g.getModel().toLowerCase()
                         .startsWith( name.toLowerCase() ) )
                 .collect( Collectors.toList() );
         oldSearch = name;
@@ -79,49 +79,49 @@ public class GoodsTableModel extends AbstractTableModel {
         fireTableStructureChanged();
     }
 
-    public void addGood( Good good ) {
+    public void addGood( Model model ) {
         //region Додавання нового елемента
-        goods.add( good );
-        oldGoods.add( good );
+        models.add( model );
+        oldModels.add( model );
         //endregion
         getSorted();
         fireTableDataChanged();
     }
 
-    public void updateGood( Good good ) {
+    public void updateGood( Model model ) {
         //region Заміна старого елемента на новий
-        UnaryOperator<Good> goodUnaryOperator = g -> {
-            if ( g.getId() == good.getId() ) return good;
+        UnaryOperator<Model> goodUnaryOperator = g -> {
+            if ( g.getId() == model.getId() ) return model;
             else return g;
         };
-        goods.replaceAll( goodUnaryOperator );
-        oldGoods.replaceAll( goodUnaryOperator );
+        models.replaceAll( goodUnaryOperator );
+        oldModels.replaceAll( goodUnaryOperator );
         //endregion
         getSorted();
         fireTableDataChanged();
     }
 
     public void removeRow( int rowIndex ) {
-        oldGoods.remove( goods.get( rowIndex ) );
-        goods.remove( rowIndex );
+        oldModels.remove( models.get( rowIndex ) );
+        models.remove( rowIndex );
         fireTableRowsDeleted( rowIndex, rowIndex );
     }
 
-    public Good getGoodFromRow( int rowIndex ) {
-        return goods.get( rowIndex );
+    public Model getGoodFromRow( int rowIndex ) {
+        return models.get( rowIndex );
     }
 
     public void refreshTable() {
-        fireTableRowsUpdated( 0, goods.size() );
+        fireTableRowsUpdated( 0, models.size() );
     }
 
-    public List<Good> getGoods() {
-        return goods;
+    public List<Model> getModels() {
+        return models;
     }
 
     @Override
     public int getRowCount() {
-        return goods.size();
+        return models.size();
     }
 
     @Override
@@ -131,18 +131,18 @@ public class GoodsTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt( int rowIndex, int columnIndex ) {
-        Good g = goods.get( rowIndex );
+        Model g = models.get( rowIndex );
         switch ( columnIndex ) {
             case 0:
                 return String.valueOf( g.getId() );
             case 1:
-                return g.getName();
+                return g.getModel();
             case 2:
-                return g.getType();
+                return g.getSerial();
             case 3:
-                return g.getManufacturer();
+                return g.getType();
             case 4:
-                return g.getArticle();
+                return g.getDate();
             case 5:
                 return String.valueOf( g.getPrice() );
             case 6:
@@ -152,7 +152,7 @@ public class GoodsTableModel extends AbstractTableModel {
             case 8:
                 return g.getColor();
             case 9:
-                return g.getSpecifications();
+                return g.getArchitecture();
             default:
                 return null;
         }

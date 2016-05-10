@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_60" class="java.beans.XMLDecoder">
+ <object class="com.jformdesigner.model.FormModel">
+  <void property="contentType">
+   <string>form/swing</string>
+  </void>
+  <void property="root">
+   <object class="com.jformdesigner.model.FormRoot">
+    <void method="add">
+     <object class="com.jformdesigner.model.FormWindow">
+      <string>javax.swing.JFrame</string>
+      <object class="com.jformdesigner.model.FormLayoutManager">
+       <class>org.jdesktop.layout.GroupLayout</class>
+       <void method="setProperty">
+        <string>$horizontalGroup</string>
+        <string>par l {comp toolBar::t::954:x, comp scrollPane::t::954:x}</string>
+       </void>
+       <void method="setProperty">
+        <string>$verticalGroup</string>
+        <string>par l {seq t {comp toolBar:::p::p, space :::p, comp scrollPane::::449:x}}</string>
+       </void>
+      </object>
+      <void method="setProperty">
+       <string>defaultCloseOperation</string>
+       <int>3</int>
+      </void>
+      <void method="setProperty">
+       <string>title</string>
+       <string>МАГАЗИНИ</string>
+      </void>
+      <void method="setProperty">
+       <string>background</string>
+       <object class="java.awt.Color">
+        <int>255</int>
+        <int>255</int>
+        <int>255</int>
+        <int>255</int>
+       </object>
+      </void>
+      <void method="add">
+       <object class="com.jformdesigner.model.FormContainer">
+        <string>javax.swing.JScrollPane</string>
+        <object class="com.jformdesigner.model.FormLayoutManager">
+         <class>javax.swing.JScrollPane</class>
+        </object>
+        <void method="setProperty">
+         <string>background</string>
+         <object class="java.awt.Color">
+          <int>255</int>
+          <int>255</int>
+          <int>255</int>
+          <int>255</int>
+         </object>
+        </void>
+        <void property="name">
+         <string>scrollPane</string>
+        </void>
+        <void method="add">
+         <object class="com.jformdesigner.model.FormComponent">
+          <string>javax.swing.JTable</string>
+          <void method="setProperty">
+           <string>selectionMode</string>
+           <int>0</int>
+          </void>
+          <void method="setProperty">
+           <string>rowHeight</string>
+           <int>20</int>
+          </void>
+          <void method="setProperty">
+           <string>font</string>
+           <object class="java.awt.Font">
+            <string>Times New Roman</string>
+            <int>0</int>
+            <int>12</int>
+           </object>
+          </void>
+          <void property="name">
+           <string>tableShop</string>
+          </void>
+          <void method="addEvent">
+           <object class="com.jformdesigner.model.FormEvent">
+            <string>java.awt.event.MouseListener</string>
+            <string>mouseClicked</string>
+            <string>tableShopMouseClicked</string>
+            <boolean>true</boolean>
+           </object>
+          </void>
+         </object>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="com.jformdesigner.model.FormContainer">
+        <string>javax.swing.JToolBar</string>
+        <object class="com.jformdesigner.model.FormLayoutManager">
+         <class>javax.swing.JToolBar</class>
+        </object>
+        <void method="setProperty">
+         <string>floatable</string>
+         <boolean>false</boolean>
+        </void>
+        <void method="setProperty">
+         <string>background</string>
+         <object class="java.awt.Color">
+          <int>255</int>
+          <int>255</int>
+          <int>255</int>
+          <int>255</int>
+         </object>
+        </void>
+        <void method="setProperty">
+         <string>alignmentX</string>
+         <float>0.0</float>
+        </void>
+        <void method="setProperty">
+         <string>borderPainted</string>
+         <boolean>false</boolean>
+        </void>
+        <void method="setProperty">
+         <string>maximumSize</string>
+         <object class="java.awt.Dimension">
+          <int>1920</int>
+          <int>41</int>
+         </object>
+        </void>
+        <void method="setProperty">
+         <string>preferredSize</string>
+         <object class="java.awt.Dimension">
+          <int>907</int>
+          <int>41</int>
+         </object>
+        </void>
+        <void property="name">
+         <string>toolBar</string>
+        </void>
+        <void method="add">
+         <object class="com.jformdesigner.model.FormComponent">
+          <string>javax.swing.JButton</string>
+          <void method="setProperty">
+           <string>toolTipText</string>
+           <string>Додати</string>
+          </void>
+          <void method="setProperty">
+           <string>icon</string>
+           <object class="com.jformdesigner.model.SwingIcon">
+            <int>0</int>
+            <string>/com/yana/kursova/gui/icons/add.png</string>
+           </object>
+          </void>
+          <void method="setProperty">
+           <string>alignmentY</string>
+           <float>0.0</float>
+          </void>
+          <void method="setProperty">
+           <string>borderPainted</string>
+           <boolean>false</boolean>
+          </void>
+          <void method="setProperty">
+           <string>background</string>
+           <object class="java.awt.Color">
+            <int>255</int>
+            <int>255</int>
+            <int>255</int>
+            <int>255</int>
+           </object>
+          </void>
+          <void property="name">
+           <string>buttonAddTB</string>
+          </void>
+          <void method="addEvent">
+           <object class="com.jformdesigner.model.FormEvent">
+            <string>java.awt.event.ActionListener</string>
+            <string>actionPerformed</string>
+            <string>buttonAddTBActionPerformed</string>
+            <boolean>true</boolean>
+           </object>
+          </void>
+         </object>
+        </void>
+        <void method="add">
+         <object class="com.jformdesigner.model.FormComponent">
+          <string>javax.swing.JButton</string>
+          <void method="setProperty">
+           <string>borderPainted</string>
+           <boolean>false</boolean>
+          </void>
+          <void method="setProperty">
+           <string>icon</string>
+           <object class="com.jformdesigner.model.SwingIcon">
+            <int>0</int>
+            <string>/com/yana/kursova/gui/icons/delete.png</string>
+           </object>
+          </void>
+          <void method="setProperty">
+           <string>background</string>
+           <object class="java.awt.Color">
+            <int>255</int>
+            <int>255</int>
+            <int>255</int>
+            <int>255</int>
+           </object>
+          </void>
+          <void method="setProperty">
+           <string>alignmentY</string>
+           <float>0.0</float>
+          </void>
+          <void method="setProperty">
+           <string>toolTipText</string>
+           <string>Видалити</string>
+          </void>
+          <void property="name">
+           <string>buttonDeleteTB</string>
+          </void>
+          <void method="addEvent">
+           <object class="com.jformdesigner.model.FormEvent">
+            <string>java.awt.event.ActionListener</string>
+            <string>actionPerformed</string>
+            <string>buttonDeleteTBActionPerformed</string>
+            <boolean>true</boolean>
+           </object>
+          </void>
+         </object>
+        </void>
+        <void method="add">
+         <object class="com.jformdesigner.model.FormComponent">
+          <string>javax.swing.JButton</string>
+          <void method="setProperty">
+           <string>icon</string>
+           <object class="com.jformdesigner.model.SwingIcon">
+            <int>0</int>
+            <string>/com/yana/kursova/gui/icons/edit.png</string>
+           </object>
+          </void>
+          <void method="setProperty">
+           <string>alignmentY</string>
+           <float>0.0</float>
+          </void>
+          <void method="setProperty">
+           <string>borderPainted</string>
+           <boolean>false</boolean>
+          </void>
+          <void method="setProperty">
+           <string>background</string>
+           <object class="java.awt.Color">
+            <int>255</int>
+            <int>255</int>
+            <int>255</int>
+            <int>255</int>
+           </object>
+          </void>
+          <void method="setProperty">
+           <string>toolTipText</string>
+           <string>Редагувати</string>
+          </void>
+          <void property="name">
+           <string>buttonEditTB</string>
+          </void>
+          <void method="addEvent">
+           <object class="com.jformdesigner.model.FormEvent">
+            <string>java.awt.event.ActionListener</string>
+            <string>actionPerformed</string>
+            <string>buttonEditTBActionPerformed</string>
+            <boolean>true</boolean>
+           </object>
+          </void>
+         </object>
+        </void>
+        <void method="add">
+         <object class="com.jformdesigner.model.FormComponent">
+          <string>javax.swing.JButton</string>
+          <void method="setProperty">
+           <string>selectedIcon</string>
+           <object class="com.jformdesigner.model.SwingIcon">
+            <int>0</int>
+            <string>/com/yana/kursova/gui/icons/print.png</string>
+           </object>
+          </void>
+          <void method="setProperty">
+           <string>alignmentY</string>
+           <float>0.0</float>
+          </void>
+          <void method="setProperty">
+           <string>borderPainted</string>
+           <boolean>false</boolean>
+          </void>
+          <void method="setProperty">
+           <string>toolTipText</string>
+           <string>Друк</string>
+          </void>
+          <void method="setProperty">
+           <string>background</string>
+           <object class="java.awt.Color">
+            <int>255</int>
+            <int>255</int>
+            <int>255</int>
+            <int>255</int>
+           </object>
+          </void>
+          <void method="setProperty">
+           <string>icon</string>
+           <object class="com.jformdesigner.model.SwingIcon">
+            <int>0</int>
+            <string>/com/yana/kursova/gui/icons/print.png</string>
+           </object>
+          </void>
+          <void property="name">
+           <string>buttonPrintTB</string>
+          </void>
+          <void method="addEvent">
+           <object class="com.jformdesigner.model.FormEvent">
+            <string>java.awt.event.ActionListener</string>
+            <string>actionPerformed</string>
+            <string>buttonPrintTBActionPerformed</string>
+            <boolean>true</boolean>
+           </object>
+          </void>
+         </object>
+        </void>
+        <void method="add">
+         <object class="com.jformdesigner.model.FormComponent">
+          <string>javax.swing.JLabel</string>
+          <void method="setProperty">
+           <string>text</string>
+           <string>Пошук по назві: </string>
+          </void>
+          <void method="setProperty">
+           <string>preferredSize</string>
+           <object class="java.awt.Dimension">
+            <int>630</int>
+            <int>30</int>
+           </object>
+          </void>
+          <void method="setProperty">
+           <string>maximumSize</string>
+           <object class="java.awt.Dimension">
+            <int>1920</int>
+            <int>30</int>
+           </object>
+          </void>
+          <void method="setProperty">
+           <string>horizontalAlignment</string>
+           <int>4</int>
+          </void>
+          <void property="name">
+           <string>label1</string>
+          </void>
+         </object>
+        </void>
+        <void method="add">
+         <object class="com.jformdesigner.model.FormComponent">
+          <string>javax.swing.JTextField</string>
+          <void method="setProperty">
+           <string>maximumSize</string>
+           <object class="java.awt.Dimension">
+            <int>125</int>
+            <int>30</int>
+           </object>
+          </void>
+          <void method="setProperty">
+           <string>preferredSize</string>
+           <object class="java.awt.Dimension">
+            <int>125</int>
+            <int>30</int>
+           </object>
+          </void>
+          <void property="name">
+           <string>textFieldSearch</string>
+          </void>
+          <void method="addEvent">
+           <object class="com.jformdesigner.model.FormEvent">
+            <string>java.awt.event.KeyListener</string>
+            <string>keyTyped</string>
+            <string>textFieldSearchKeyTyped</string>
+            <boolean>true</boolean>
+           </object>
+          </void>
+         </object>
+        </void>
+       </object>
+      </void>
+      <void property="name">
+       <string>this</string>
+      </void>
+     </object>
+     <object class="com.jformdesigner.model.FormLayoutConstraints">
+      <null/>
+      <void method="setProperty">
+       <string>location</string>
+       <object class="java.awt.Point">
+        <int>0</int>
+        <int>0</int>
+       </object>
+      </void>
+      <void method="setProperty">
+       <string>size</string>
+       <object class="java.awt.Dimension">
+        <int>970</int>
+        <int>535</int>
+       </object>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

@@ -6,7 +6,7 @@ public final class DeveloperQueries {
             "(brand, ofice, country, city, addres, phone, sait, founder, rating) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_QUERY = "UPDATE developers " +
-            "SET brand = ?, ofice = ?, country = ?, city = ?, addres = ?, phone = ?, " +
+            "SET brand = ?, ofice = ?, country = ?, city = ?, addres = ?, " +
             "phone = ?, sait = ?, founder = ?, rating = ? " +
             "WHERE Id_dev = ?";
     private static final String DELETE_QUERY = "DELETE FROM developers WHERE Id_dev = ?";

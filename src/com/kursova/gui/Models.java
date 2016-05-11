@@ -1,5 +1,6 @@
 package com.kursova.gui;
 
+import com.kursova.dao.CharDAO;
 import com.kursova.dao.ModelDAO;
 import com.kursova.domain.Model;
 
@@ -54,14 +55,17 @@ public class Models extends JDialog {
 
     private void buttonDeleteActionPerformed( ActionEvent e ) {
         int confirmDialog = JOptionPane.showConfirmDialog( this,
-                "Ви дійсно бажаєте видалити товар?", "Увага!",
+                "Are you sure you want to delete a model?", "Warning!",
                 JOptionPane.YES_NO_OPTION );
         if ( confirmDialog == JOptionPane.YES_OPTION ) {
             int selectedRow = table.getSelectedRow();
-            int modelId = tableModel.getModelFromRow( selectedRow ).getId();
+            Model modelFromRow = tableModel.getModelFromRow( selectedRow );
+            int modelId = modelFromRow.getId();
+            int charId = modelFromRow.getCharId();
             tableModel.removeRow( selectedRow );
             try {
                 new ModelDAO().deleteModel( modelId );
+                new CharDAO().deleteChar( charId );
             } catch ( SQLException e1 ) {
                 e1.printStackTrace();
             }

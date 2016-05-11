@@ -32,7 +32,7 @@ public class ModelsTableModel extends AbstractTableModel {
 
     private void getSorted() {
         //region Ініціалізація сортування
-        //Сортування по назві
+        //Сортування по model
         Comparator<Model> goodComparator = ( o1, o2 ) -> o1.getModel().compareToIgnoreCase( o2.getModel() );
         this.models.sort( goodComparator );
         this.oldModels.sort( goodComparator );
@@ -74,7 +74,7 @@ public class ModelsTableModel extends AbstractTableModel {
         fireTableDataChanged();
     }
 
-    public void updateGood( Model model ) {
+    public void updateModel( Model model ) {
         //region Заміна старого елемента на новий
         UnaryOperator<Model> goodUnaryOperator = g -> {
             if ( g.getId() == model.getId() ) return model;

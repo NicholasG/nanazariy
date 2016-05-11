@@ -7,7 +7,6 @@ import com.kursova.domain.Developer;
 import com.kursova.domain.Model;
 
 import javax.swing.*;
-import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.sql.Date;
@@ -73,7 +72,7 @@ public class AddNewModel extends JDialog {
                 new CharDAO().updateChar( aChar );
                 dao.updateModel( model );
                 ModelsTableModel model = ( ModelsTableModel ) Models.table.getModel();
-                model.updateGood( this.model );
+                model.updateModel( this.model );
                 this.dispose();
             } catch ( SQLException e1 ) {
                 e1.printStackTrace();
@@ -81,8 +80,8 @@ public class AddNewModel extends JDialog {
         } else {
             Model model1 = new Model();
             Char aChar = getChar();
-            DevelopersTableModel mainTable = ( DevelopersTableModel ) MainView.tableShop.getModel();
-            Developer developer = mainTable.getShopFromRow( MainView.tableShop.getSelectedRow() );
+            DevelopersTableModel mainTable = ( DevelopersTableModel ) MainView.tableDevelopers.getModel();
+            Developer developer = mainTable.getDeveloperFromRow( MainView.tableDevelopers.getSelectedRow() );
             getModel( model1 );
             try {
                 int charId = new CharDAO().insertChar( aChar );

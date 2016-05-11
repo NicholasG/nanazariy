@@ -30,7 +30,7 @@ public class DevelopersTableModel extends AbstractTableModel {
 
     private void getSorted() {
         //region Ініціалізація сортування
-        //Сортування по назві
+        //Сортування по brand
         Comparator<Developer> shopComparator = ( o1, o2 ) -> o1.getBrand().compareToIgnoreCase( o2.getBrand() );
         this.developers.sort( shopComparator );
         this.oldDevelopers.sort( shopComparator );
@@ -53,7 +53,7 @@ public class DevelopersTableModel extends AbstractTableModel {
         fireTableStructureChanged();
     }
 
-    public void addShop( Developer developer ) {
+    public void addDeveloper( Developer developer ) {
         //region Додавання нового елемента
         developers.add( developer );
         oldDevelopers.add( developer );
@@ -62,7 +62,7 @@ public class DevelopersTableModel extends AbstractTableModel {
         fireTableDataChanged();
     }
 
-    public void updateShop( Developer developer ) {
+    public void updateDeveloper( Developer developer ) {
         //region Заміна старого елемента на новий
         UnaryOperator<Developer> shopUnaryOperator = s -> {
             if ( s.getId() == developer.getId() ) return developer;
@@ -83,7 +83,7 @@ public class DevelopersTableModel extends AbstractTableModel {
         fireTableRowsDeleted( rowIndex, rowIndex );
     }
 
-    public Developer getShopFromRow( int rowIndex ) {
+    public Developer getDeveloperFromRow( int rowIndex ) {
         return developers.get( rowIndex );
     }
 

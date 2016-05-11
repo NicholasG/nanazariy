@@ -22,32 +22,32 @@ public class MainView extends JFrame {
 
     private void tableShopMouseClicked( MouseEvent e ) {
         if ( e.getClickCount() == 2 ) {
-            int selectedRow = tableShop.getSelectedRow();
-            int shopId = tableModel.getShopFromRow( selectedRow ).getId();
+            int selectedRow = tableDevelopers.getSelectedRow();
+            int shopId = tableModel.getDeveloperFromRow( selectedRow ).getId();
             Models models = new Models( this, shopId );
             models.setVisible( true );
         }
     }
 
     private void buttonAddTBActionPerformed( ActionEvent e ) {
-        AddNewShop newShop = new AddNewShop( this );
+        AddNewDeveloper newShop = new AddNewDeveloper( this );
         newShop.setVisible( true );
     }
 
     private void buttonEditTBActionPerformed( ActionEvent e ) {
-        int selectedRow = tableShop.getSelectedRow();
-        Developer developer = tableModel.getShopFromRow( selectedRow );
-        AddNewShop newShop = new AddNewShop( this, developer );
+        int selectedRow = tableDevelopers.getSelectedRow();
+        Developer developer = tableModel.getDeveloperFromRow( selectedRow );
+        AddNewDeveloper newShop = new AddNewDeveloper( this, developer );
         newShop.setVisible( true );
     }
 
     private void buttonDeleteTBActionPerformed( ActionEvent e ) {
         int confirmDialog = JOptionPane.showConfirmDialog( this,
-                "Ви дійсно бажаєте видалити магазин?", "Увага!",
+                "Are you sure you want to delete a developer?", "Warning!",
                 JOptionPane.YES_NO_OPTION );
         if ( confirmDialog == JOptionPane.YES_OPTION ) try {
-            int selectedRow = tableShop.getSelectedRow();
-            Developer developer = tableModel.getShopFromRow( selectedRow );
+            int selectedRow = tableDevelopers.getSelectedRow();
+            Developer developer = tableModel.getDeveloperFromRow( selectedRow );
             new DeveloperDAO().deleteDeveloper( developer.getId() );
             tableModel.removeRow( selectedRow );
         } catch ( SQLException e1 ) {
@@ -59,7 +59,7 @@ public class MainView extends JFrame {
         MessageFormat headerFormat = new MessageFormat( "Сторінка {0}" );
         MessageFormat footerFormat = new MessageFormat( "- {0} -" );
         try {
-            tableShop.print( JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat );
+            tableDevelopers.print( JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat );
         } catch ( PrinterException e1 ) {
             e1.printStackTrace();
         }
@@ -82,7 +82,7 @@ public class MainView extends JFrame {
             return new DevelopersTableModel( developers );
         } catch ( Exception e ) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog( this, "Не вдалося ініціалізувати таблицю магазинів: " + e.getMessage() );
+            JOptionPane.showMessageDialog( this, "Could not initialize a table: " + e.getMessage() );
         }
         return new DevelopersTableModel( new ArrayList<>() );
     }
@@ -91,7 +91,7 @@ public class MainView extends JFrame {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Nicholas G
         scrollPane = new JScrollPane();
-        tableShop = new JTable(tableModel);
+        tableDevelopers = new JTable(tableModel);
         toolBar = new JToolBar();
         buttonAddTB = new JButton();
         buttonDeleteTB = new JButton();
@@ -102,7 +102,7 @@ public class MainView extends JFrame {
 
         //======== this ========
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("\u041c\u0410\u0413\u0410\u0417\u0418\u041d\u0418");
+        setTitle("DEVELOPERS");
         setBackground(Color.white);
         Container contentPane = getContentPane();
 
@@ -110,17 +110,17 @@ public class MainView extends JFrame {
         {
             scrollPane.setBackground(Color.white);
 
-            //---- tableShop ----
-            tableShop.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-            tableShop.setRowHeight(20);
-            tableShop.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-            tableShop.addMouseListener(new MouseAdapter() {
+            //---- tableDevelopers ----
+            tableDevelopers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            tableDevelopers.setRowHeight(20);
+            tableDevelopers.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+            tableDevelopers.addMouseListener( new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     tableShopMouseClicked(e);
                 }
             });
-            scrollPane.setViewportView(tableShop);
+            scrollPane.setViewportView( tableDevelopers );
         }
 
         //======== toolBar ========
@@ -210,7 +210,7 @@ public class MainView extends JFrame {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Nicholas G
     private JScrollPane scrollPane;
-    static JTable tableShop;
+    static JTable tableDevelopers;
     private JToolBar toolBar;
     private JButton buttonAddTB;
     private JButton buttonDeleteTB;

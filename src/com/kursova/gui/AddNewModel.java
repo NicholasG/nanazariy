@@ -17,11 +17,6 @@ public class AddNewModel extends JDialog {
     private Model model = null;
     private ModelDAO dao = new ModelDAO();
 
-    public AddNewModel( Frame owner ) {
-        super( owner );
-        initComponents();
-    }
-
     public AddNewModel( Dialog owner ) {
         super( owner );
         initComponents();

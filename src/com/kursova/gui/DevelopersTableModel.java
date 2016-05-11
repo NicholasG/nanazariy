@@ -30,8 +30,8 @@ public class DevelopersTableModel extends AbstractTableModel {
 
     private void getSorted() {
         //region Ініціалізація сортування
-        //Сортування по brand
-        Comparator<Developer> shopComparator = ( o1, o2 ) -> o1.getBrand().compareToIgnoreCase( o2.getBrand() );
+        //Сортування по rating
+        Comparator<Developer> shopComparator = ( o1, o2 ) -> (Double.valueOf( o2.getRating() ) - Double.valueOf( o1.getRating() )) > 0 ? 1 : -1;
         this.developers.sort( shopComparator );
         this.oldDevelopers.sort( shopComparator );
         //endregion

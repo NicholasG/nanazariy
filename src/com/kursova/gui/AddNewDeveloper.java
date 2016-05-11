@@ -6,6 +6,8 @@ import com.kursova.domain.Developer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 
 public class AddNewDeveloper extends JDialog {
@@ -85,6 +87,22 @@ public class AddNewDeveloper extends JDialog {
         developer.setRating( textFieldRating.getText() );
     }
 
+    private void textFieldRatingKeyTyped( KeyEvent e ) {
+        if ( !Character.isDigit( e.getKeyChar() )
+                && e.getKeyChar() != '.'
+                && e.getKeyChar() != KeyEvent.VK_BACK_SPACE ) {
+            JOptionPane.showMessageDialog( null, "Only numbers!" );
+            e.consume();
+        }
+    }
+
+    private void textFieldPhoneKeyTyped( KeyEvent e ) {
+        if ( !Character.isDigit( e.getKeyCode() ) && e.getKeyChar() != KeyEvent.VK_BACK_SPACE ) {
+            JOptionPane.showMessageDialog( null, "Only numbers!" );
+            e.consume();
+        }
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Nicholas G
@@ -123,6 +141,14 @@ public class AddNewDeveloper extends JDialog {
         textFieldCity.setBounds(345, 60, 135, 24);
         contentPane.add(textFieldAddress);
         textFieldAddress.setBounds(345, 85, 135, 24);
+
+        //---- textFieldPhone ----
+        textFieldPhone.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                textFieldPhoneKeyTyped(e);
+            }
+        });
         contentPane.add(textFieldPhone);
         textFieldPhone.setBounds(345, 110, 135, 24);
 
@@ -186,6 +212,14 @@ public class AddNewDeveloper extends JDialog {
         textFieldWebsite.setBounds(85, 35, 135, 24);
         contentPane.add(textFieldFounder);
         textFieldFounder.setBounds(85, 60, 135, 24);
+
+        //---- textFieldRating ----
+        textFieldRating.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                textFieldRatingKeyTyped(e);
+            }
+        });
         contentPane.add(textFieldRating);
         textFieldRating.setBounds(85, 85, 135, 24);
 

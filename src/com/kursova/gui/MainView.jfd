@@ -144,7 +144,7 @@
            <string>icon</string>
            <object class="com.jformdesigner.model.SwingIcon">
             <int>0</int>
-            <string>/com/yana/kursova/gui/icons/add.png</string>
+            <string>/com/kursova/gui/icons/add.png</string>
            </object>
           </void>
           <void method="setProperty">
@@ -188,7 +188,7 @@
            <string>icon</string>
            <object class="com.jformdesigner.model.SwingIcon">
             <int>0</int>
-            <string>/com/yana/kursova/gui/icons/delete.png</string>
+            <string>/com/kursova/gui/icons/delete.png</string>
            </object>
           </void>
           <void method="setProperty">
@@ -228,7 +228,7 @@
            <string>icon</string>
            <object class="com.jformdesigner.model.SwingIcon">
             <int>0</int>
-            <string>/com/yana/kursova/gui/icons/edit.png</string>
+            <string>/com/kursova/gui/icons/edit.png</string>
            </object>
           </void>
           <void method="setProperty">
@@ -272,7 +272,7 @@
            <string>selectedIcon</string>
            <object class="com.jformdesigner.model.SwingIcon">
             <int>0</int>
-            <string>/com/yana/kursova/gui/icons/print.png</string>
+            <string>/com/kursova/gui/icons/print.png</string>
            </object>
           </void>
           <void method="setProperty">
@@ -300,7 +300,7 @@
            <string>icon</string>
            <object class="com.jformdesigner.model.SwingIcon">
             <int>0</int>
-            <string>/com/yana/kursova/gui/icons/print.png</string>
+            <string>/com/kursova/gui/icons/print.png</string>
            </object>
           </void>
           <void property="name">

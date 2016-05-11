@@ -6,7 +6,7 @@ new FormModel {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 			name: "this"
 			"background": new java.awt.Color( 255, 255, 255, 255 )
-			"title": "ТОВАРИ"
+			"title": "MODELS"
 			"resizable": false
 			"defaultCloseOperation": 2
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -33,7 +33,7 @@ new FormModel {
 				"borderPainted": false
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "buttonAdd"
-					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/yana/kursova/gui/icons/add.png" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/kursova/gui/icons/add.png" )
 					"toolTipText": "Додати"
 					"borderPainted": false
 					"background": new java.awt.Color( 255, 255, 255, 255 )
@@ -41,7 +41,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "buttonDelete"
-					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/yana/kursova/gui/icons/delete.png" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/kursova/gui/icons/delete.png" )
 					"toolTipText": "Видалити"
 					"borderPainted": false
 					"background": new java.awt.Color( 255, 255, 255, 255 )
@@ -49,7 +49,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "buttonEdit"
-					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/yana/kursova/gui/icons/edit.png" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/kursova/gui/icons/edit.png" )
 					"toolTipText": "Редагувати"
 					"borderPainted": false
 					"background": new java.awt.Color( 255, 255, 255, 255 )
@@ -57,7 +57,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "buttonPrint"
-					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/yana/kursova/gui/icons/print.png" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/kursova/gui/icons/print.png" )
 					"toolTipText": "Друк"
 					"borderPainted": false
 					"background": new java.awt.Color( 255, 255, 255, 255 )

@@ -8,10 +8,10 @@ public final class DeveloperQueries {
     private static final String UPDATE_QUERY = "UPDATE developers " +
             "SET brand = ?, ofice = ?, country = ?, city = ?, addres = ?, phone = ?, " +
             "phone = ?, sait = ?, founder = ?, rating = ? " +
-            "WHERE id = ?";
-    private static final String DELETE_QUERY = "DELETE FROM developers WHERE id = ?";
+            "WHERE Id_dev = ?";
+    private static final String DELETE_QUERY = "DELETE FROM developers WHERE Id_dev = ?";
     private static final String SELECT_ALL_QUERY = "SELECT * FROM developers";
-    private static final String SELECT_ONE_BY_ID_QUERY = "SELECT * FROM developers WHERE id = ?";
+    private static final String SELECT_ONE_BY_ID_QUERY = "SELECT * FROM developers WHERE Id_dev = ?";
     private static final String SELECT_ALL_BY_NAME_QUERY = "SELECT * FROM developers WHERE UPPER(brand) LIKE UPPER(?)";
 
     public static String getInsertQuery() {

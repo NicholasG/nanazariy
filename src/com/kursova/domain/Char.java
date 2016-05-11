@@ -19,6 +19,29 @@ public class Char implements Serializable {
     public Char() {
     }
 
+    public Char( String display,
+                 String typeOfDisplay,
+                 String processor,
+                 String frequency,
+                 String ram,
+                 String typeOfRam,
+                 String hardDisk,
+                 String videoCard,
+                 String webCam,
+                 String os
+    ) {
+        this.display = display;
+        this.typeOfDisplay = typeOfDisplay;
+        this.processor = processor;
+        this.frequency = frequency;
+        this.ram = ram;
+        this.typeOfRam = typeOfRam;
+        this.hardDisk = hardDisk;
+        this.videoCard = videoCard;
+        this.webCam = webCam;
+        this.os = os;
+    }
+
     public int getId() {
         return id;
     }

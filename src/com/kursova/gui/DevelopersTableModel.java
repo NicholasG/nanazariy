@@ -12,21 +12,20 @@ import java.util.stream.Collectors;
 /**
  * Created by NicholasG on 10.04.2016.
  */
-public class ShopsTableModel extends AbstractTableModel {
+public class DevelopersTableModel extends AbstractTableModel {
 
-    private final String[] columns = { "ID", "Назва", "Адреса",
-            "Телефон", "Директор", "Вебсайт", "Розклад" };
+    private final String[] columns = { "ID", "Brand", "Office", "City",
+            "Address", "Phone", "Website", "Founder", "Rating", "Country" };
 
     private List<Developer> developers;
     private List<Developer> oldDevelopers = new ArrayList<>();
 
     private static String oldSearch = "";
 
-    public ShopsTableModel( List<Developer> developers ) {
+    public DevelopersTableModel( List<Developer> developers ) {
         this.developers = developers;
         this.oldDevelopers.addAll( developers );
         getSorted();
-
     }
 
     private void getSorted() {
@@ -105,22 +104,28 @@ public class ShopsTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt( int rowIndex, int columnIndex ) {
         //region Витягування значення з комірки
-        Developer s = developers.get( rowIndex );
+        Developer d = developers.get( rowIndex );
         switch ( columnIndex ) {
             case 0:
-                return String.valueOf( s.getId() );
+                return String.valueOf( d.getId() );
             case 1:
-                return s.getBrand();
+                return d.getBrand();
             case 2:
-                return s.getAddress();
+                return d.getOffice();
             case 3:
-                return s.getPhone();
+                return d.getCity();
             case 4:
-                return s.getFounder();
+                return d.getAddress();
             case 5:
-                return s.getSite();
+                return d.getPhone();
             case 6:
-                return s.getRating();
+                return d.getSite();
+            case 7:
+                return d.getFounder();
+            case 8:
+                return d.getRating();
+            case 9:
+                return d.getCountry();
             default:
                 return null;
         }

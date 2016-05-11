@@ -18,7 +18,7 @@ public class ModelDAO {
             statement.setString( 1, model.getModel() );
             statement.setString( 2, model.getSerial() );
             statement.setString( 3, model.getColor() );
-            statement.setString( 3, model.getType() );
+            statement.setString( 4, model.getType() );
             statement.setString( 5, model.getDate().toString() );
             statement.setString( 6, model.getArchitecture() );
             statement.setInt( 7, model.getCharId() );
@@ -41,7 +41,7 @@ public class ModelDAO {
             statement.setString( 1, model.getModel() );
             statement.setString( 2, model.getSerial() );
             statement.setString( 3, model.getColor() );
-            statement.setString( 3, model.getType() );
+            statement.setString( 4, model.getType() );
             statement.setString( 5, model.getDate().toString() );
             statement.setString( 6, model.getArchitecture() );
             statement.setInt( 7, model.getCharId() );
@@ -56,7 +56,7 @@ public class ModelDAO {
     }
 
     // Видаляє запис з таблиці Товари
-    public void deleteGood( int id ) throws SQLException {
+    public void deleteModel( int id ) throws SQLException {
         try ( Connection connection = DataAccessUtil.createConnection() ) {
             PreparedStatement statement = connection.prepareStatement( ModelQueries.getDeleteQuery() );
 
@@ -95,6 +95,18 @@ public class ModelDAO {
         try ( Connection connection = DataAccessUtil.createConnection() ) {
             PreparedStatement statement = connection.prepareStatement( ModelQueries.getSelectAllByNameQuery() );
             statement.setString( 1, name + '%' );
+
+            ResultSet rs = statement.executeQuery();
+            List<Model> result = new ArrayList<>();
+            while ( rs.next() ) result.add( getModelFromRow( rs ) );
+            return result;
+        }
+    }
+
+    public List<Model> findAllByDeveloperId( int id ) throws SQLException {
+        try ( Connection connection = DataAccessUtil.createConnection() ) {
+            PreparedStatement statement = connection.prepareStatement( ModelQueries.getSelectAllModelsByDeveloperId() );
+            statement.setInt( 1, id );
 
             ResultSet rs = statement.executeQuery();
             List<Model> result = new ArrayList<>();

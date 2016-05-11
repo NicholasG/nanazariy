@@ -96,14 +96,14 @@ public class DeveloperDAO {
         Developer d = new Developer();
         d.setId( rs.getInt( 1 ) );
         d.setBrand( rs.getString( 2 ) );
-        d.setAddress( rs.getString( 3 ) );
-        d.setPhone( rs.getString( 4 ) );
-        d.setFounder( rs.getString( 5 ) );
-        d.setSite( rs.getString( 6 ) );
-        d.setRating( rs.getString( 7 ) );
-        d.setRating( rs.getString( 8 ) );
+        d.setOffice( rs.getString( 3 ) );
+        d.setCity( rs.getString( 4 ) );
+        d.setAddress( rs.getString( 5 ) );
+        d.setPhone( rs.getString( 6 ) );
+        d.setSite( rs.getString( 7 ) );
+        d.setFounder( rs.getString( 8 ) );
         d.setRating( rs.getString( 9 ) );
-        d.setRating( rs.getString( 10 ) );
+        d.setCountry( rs.getString( 10 ) );
 
         return d;
     }

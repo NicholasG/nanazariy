@@ -9,15 +9,15 @@ public final class ModelQueries {
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     // Оновити запис в таблиці Товари
     private static final String UPDATE_QUERY = "UPDATE models " +
-            "SET model = ?, type = ?, serial_number = ?, color = ?, " +
+            "SET model = ?, serial_number = ?, color = ?, " +
             "type = ?, date = ?, architecture = ?, char_id_char = ?, developers_Id_dev = ? " +
-            "WHERE id = ?";
+            "WHERE id_model = ?";
     // Видалити запис з таблиці Товари
-    private static final String DELETE_QUERY = "DELETE FROM models WHERE id = ?";
+    private static final String DELETE_QUERY = "DELETE FROM models WHERE id_model = ?";
     // Отримати всі записи з таблиці Товари
     private static final String SELECT_ALL_QUERY = "SELECT * FROM models";
     // Знайти конкретний запис по id
-    private static final String SELECT_ONE_BY_ID_QUERY = "SELECT * FROM models WHERE id = ?";
+    private static final String SELECT_ONE_BY_ID_QUERY = "SELECT * FROM models WHERE id_model = ?";
     // Пошук всіх записів по назві
     private static final String SELECT_ALL_BY_NAME_QUERY = "SELECT * FROM models WHERE UPPER(name) LIKE UPPER(?)";
     //

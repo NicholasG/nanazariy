@@ -11,23 +11,20 @@ import java.util.List;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
-/**
- * Created by NicholasG on 10.04.2016.
- */
-public class GoodsTableModel extends AbstractTableModel {
+public class ModelsTableModel extends AbstractTableModel {
 
-    private static final ModelDAO DEVELOPER_DAO = new ModelDAO();
+    private static final ModelDAO MODEL_DAO = new ModelDAO();
 
-    private final String[] columns = { "ID", "Назва", "Тип",
-            "Виробник", "Артикул", "Ціна",
-            "Од. вимір.", "Кількість", "Колір", "Опис" };
+    private final String[] columns = { "ID", "Model", "Serial",
+            "Color", "Type", "Date",
+            "Architecture" };
 
     private List<Model> models;
     private List<Model> oldModels = new ArrayList<>();
 
     private static String oldSearch = "";
 
-    public GoodsTableModel( List<Model> models ) {
+    public ModelsTableModel( List<Model> models ) {
         this.models = models;
         this.oldModels.addAll( models );
         getSorted();
@@ -42,26 +39,15 @@ public class GoodsTableModel extends AbstractTableModel {
         //endregion
     }
 
-    public static GoodsTableModel getGoodsTableModel( int shopId ) {
+    public static ModelsTableModel getGoodsTableModel( int developerId ) {
         try {
-            java.util.List<Model> models = DEVELOPER_DAO.findAllGoodsByShopId( shopId );
-            return new GoodsTableModel( models );
+            java.util.List<Model> models = MODEL_DAO.findAllByDeveloperId( developerId );
+            return new ModelsTableModel( models );
         } catch ( Exception e ) {
             e.printStackTrace();
             JOptionPane.showMessageDialog( null, "Не вдалося ініціалізувати таблицю товарів: " + e.getMessage() );
         }
-        return new GoodsTableModel( new ArrayList<>() );
-    }
-
-    public static GoodsTableModel getGoodsTableModel() {
-        try {
-            final java.util.List<Model> models = DEVELOPER_DAO.findAll();
-            return new GoodsTableModel( models );
-        } catch ( Exception e ) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog( null, "Не вдалося ініціалізувати таблицю товарів: " + e.getMessage() );
-        }
-        return new GoodsTableModel( new ArrayList<>() );
+        return new ModelsTableModel( new ArrayList<>() );
     }
 
     public void search( String name ) {
@@ -79,7 +65,7 @@ public class GoodsTableModel extends AbstractTableModel {
         fireTableStructureChanged();
     }
 
-    public void addGood( Model model ) {
+    public void addModel( Model model ) {
         //region Додавання нового елемента
         models.add( model );
         oldModels.add( model );
@@ -107,7 +93,7 @@ public class GoodsTableModel extends AbstractTableModel {
         fireTableRowsDeleted( rowIndex, rowIndex );
     }
 
-    public Model getGoodFromRow( int rowIndex ) {
+    public Model getModelFromRow( int rowIndex ) {
         return models.get( rowIndex );
     }
 
@@ -130,35 +116,6 @@ public class GoodsTableModel extends AbstractTableModel {
     }
 
     @Override
-    public Object getValueAt( int rowIndex, int columnIndex ) {
-        Model g = models.get( rowIndex );
-        switch ( columnIndex ) {
-            case 0:
-                return String.valueOf( g.getId() );
-            case 1:
-                return g.getModel();
-            case 2:
-                return g.getSerial();
-            case 3:
-                return g.getType();
-            case 4:
-                return g.getDate();
-            case 5:
-                return String.valueOf( g.getPrice() );
-            case 6:
-                return g.getScale();
-            case 7:
-                return String.valueOf( g.getAmount() );
-            case 8:
-                return g.getColor();
-            case 9:
-                return g.getArchitecture();
-            default:
-                return null;
-        }
-    }
-
-    @Override
     public String getColumnName( int column ) {
         return columns[column];
     }
@@ -166,6 +123,29 @@ public class GoodsTableModel extends AbstractTableModel {
     @Override
     public Class<?> getColumnClass( int columnIndex ) {
         return String.class;
+    }
+
+    @Override
+    public Object getValueAt( int rowIndex, int columnIndex ) {
+        Model m = models.get( rowIndex );
+        switch ( columnIndex ) {
+            case 0:
+                return String.valueOf( m.getId() );
+            case 1:
+                return m.getModel();
+            case 2:
+                return m.getSerial();
+            case 3:
+                return m.getColor();
+            case 4:
+                return m.getType();
+            case 5:
+                return m.getDate().toString();
+            case 6:
+                return m.getArchitecture();
+            default:
+                return null;
+        }
     }
 
 }

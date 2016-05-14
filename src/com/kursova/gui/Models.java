@@ -132,7 +132,7 @@ public class Models extends JDialog {
 
             //---- buttonAdd ----
             buttonAdd.setIcon(new ImageIcon(getClass().getResource("/com/kursova/gui/icons/add.png")));
-            buttonAdd.setToolTipText("\u0414\u043e\u0434\u0430\u0442\u0438");
+            buttonAdd.setToolTipText("Add a new model");
             buttonAdd.setBorderPainted(false);
             buttonAdd.setBackground(Color.white);
             buttonAdd.addActionListener(e -> buttonAddActionPerformed(e));
@@ -140,7 +140,7 @@ public class Models extends JDialog {
 
             //---- buttonDelete ----
             buttonDelete.setIcon(new ImageIcon(getClass().getResource("/com/kursova/gui/icons/delete.png")));
-            buttonDelete.setToolTipText("\u0412\u0438\u0434\u0430\u043b\u0438\u0442\u0438");
+            buttonDelete.setToolTipText("Delete a model");
             buttonDelete.setBorderPainted(false);
             buttonDelete.setBackground(Color.white);
             buttonDelete.addActionListener(e -> buttonDeleteActionPerformed(e));
@@ -148,7 +148,7 @@ public class Models extends JDialog {
 
             //---- buttonEdit ----
             buttonEdit.setIcon(new ImageIcon(getClass().getResource("/com/kursova/gui/icons/edit.png")));
-            buttonEdit.setToolTipText("\u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438");
+            buttonEdit.setToolTipText("Edit a model");
             buttonEdit.setBorderPainted(false);
             buttonEdit.setBackground(Color.white);
             buttonEdit.addActionListener(e -> buttonEditActionPerformed(e));
@@ -156,14 +156,14 @@ public class Models extends JDialog {
 
             //---- buttonPrint ----
             buttonPrint.setIcon(new ImageIcon(getClass().getResource("/com/kursova/gui/icons/print.png")));
-            buttonPrint.setToolTipText("\u0414\u0440\u0443\u043a");
+            buttonPrint.setToolTipText("Print");
             buttonPrint.setBorderPainted(false);
             buttonPrint.setBackground(Color.white);
             buttonPrint.addActionListener(e -> buttonPrintActionPerformed(e));
             toolBar1.add(buttonPrint);
 
             //---- label1 ----
-            label1.setText("\u041f\u043e\u0448\u0443\u043a \u043f\u043e \u043d\u0430\u0437\u0432\u0456: ");
+            label1.setText("Find by model: ");
             label1.setHorizontalAlignment(SwingConstants.RIGHT);
             label1.setPreferredSize(new Dimension(630, 30));
             label1.setMaximumSize(new Dimension(630, 30));

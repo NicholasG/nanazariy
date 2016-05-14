@@ -37,18 +37,18 @@ public class DevelopersTableModel extends AbstractTableModel {
         //endregion
     }
 
-    public void search( String name ) {
+    public void search( String country ) {
         //region Пошук товару по назві
         //Якщо користувач видалив символ з поля пошуку, то пошук здійснюється по всіх елементах повторно
-        this.developers = oldSearch.length() > name.length() ? oldDevelopers : this.developers;
+        this.developers = oldSearch.length() > country.length() ? oldDevelopers : this.developers;
 
-        //Якщо @name порожнє, то поточним списком магазинів стає старий список всіх магазинів
-        if ( name.equals( "" ) ) this.developers = oldDevelopers;
+        //Якщо @country порожнє, то поточним списком магазинів стає старий список всіх магазинів
+        if ( country.equals( "" ) ) this.developers = oldDevelopers;
         else this.developers = this.developers.stream()
-                .filter( s -> s.getBrand().toLowerCase()
-                        .startsWith( name.toLowerCase() ) )
+                .filter( s -> s.getCountry().toLowerCase()
+                        .startsWith( country.toLowerCase() ) )
                 .collect( Collectors.toList() );
-        oldSearch = name;
+        oldSearch = country;
         //endregion
         fireTableStructureChanged();
     }

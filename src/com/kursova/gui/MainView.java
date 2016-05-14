@@ -67,11 +67,11 @@ public class MainView extends JFrame {
 
     private void textFieldSearchKeyTyped( KeyEvent e ) {
         if ( e.getKeyChar() != KeyEvent.VK_BACK_SPACE ) {
-            String name = textFieldSearch.getText() + e.getKeyChar();
-            tableModel.search( name );
+            String country = textFieldSearch.getText() + e.getKeyChar();
+            tableModel.search( country );
         } else {
-            String name = textFieldSearch.getText();
-            tableModel.search( name );
+            String country = textFieldSearch.getText();
+            tableModel.search( country );
         }
     }
 
@@ -114,13 +114,13 @@ public class MainView extends JFrame {
             tableDevelopers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             tableDevelopers.setRowHeight(20);
             tableDevelopers.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-            tableDevelopers.addMouseListener( new MouseAdapter() {
+            tableDevelopers.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     tableShopMouseClicked(e);
                 }
             });
-            scrollPane.setViewportView( tableDevelopers );
+            scrollPane.setViewportView(tableDevelopers);
         }
 
         //======== toolBar ========
@@ -133,7 +133,7 @@ public class MainView extends JFrame {
             toolBar.setPreferredSize(new Dimension(907, 41));
 
             //---- buttonAddTB ----
-            buttonAddTB.setToolTipText("\u0414\u043e\u0434\u0430\u0442\u0438");
+            buttonAddTB.setToolTipText("Add a new developer");
             buttonAddTB.setIcon(new ImageIcon(getClass().getResource("/com/kursova/gui/icons/add.png")));
             buttonAddTB.setAlignmentY(0.0F);
             buttonAddTB.setBorderPainted(false);
@@ -146,7 +146,7 @@ public class MainView extends JFrame {
             buttonDeleteTB.setIcon(new ImageIcon(getClass().getResource("/com/kursova/gui/icons/delete.png")));
             buttonDeleteTB.setBackground(Color.white);
             buttonDeleteTB.setAlignmentY(0.0F);
-            buttonDeleteTB.setToolTipText("\u0412\u0438\u0434\u0430\u043b\u0438\u0442\u0438");
+            buttonDeleteTB.setToolTipText("Delete a developer");
             buttonDeleteTB.addActionListener(e -> buttonDeleteTBActionPerformed(e));
             toolBar.add(buttonDeleteTB);
 
@@ -155,7 +155,7 @@ public class MainView extends JFrame {
             buttonEditTB.setAlignmentY(0.0F);
             buttonEditTB.setBorderPainted(false);
             buttonEditTB.setBackground(Color.white);
-            buttonEditTB.setToolTipText("\u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438");
+            buttonEditTB.setToolTipText("Edit a developer");
             buttonEditTB.addActionListener(e -> buttonEditTBActionPerformed(e));
             toolBar.add(buttonEditTB);
 
@@ -163,14 +163,14 @@ public class MainView extends JFrame {
             buttonPrintTB.setSelectedIcon(new ImageIcon(getClass().getResource("/com/kursova/gui/icons/print.png")));
             buttonPrintTB.setAlignmentY(0.0F);
             buttonPrintTB.setBorderPainted(false);
-            buttonPrintTB.setToolTipText("\u0414\u0440\u0443\u043a");
+            buttonPrintTB.setToolTipText("Print");
             buttonPrintTB.setBackground(Color.white);
             buttonPrintTB.setIcon(new ImageIcon(getClass().getResource("/com/kursova/gui/icons/print.png")));
             buttonPrintTB.addActionListener(e -> buttonPrintTBActionPerformed(e));
             toolBar.add(buttonPrintTB);
 
             //---- label1 ----
-            label1.setText("\u041f\u043e\u0448\u0443\u043a \u043f\u043e \u043d\u0430\u0437\u0432\u0456: ");
+            label1.setText("Find by country: ");
             label1.setPreferredSize(new Dimension(630, 30));
             label1.setMaximumSize(new Dimension(1920, 30));
             label1.setHorizontalAlignment(SwingConstants.RIGHT);

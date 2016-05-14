@@ -204,7 +204,7 @@ public class Models extends JDialog {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Nicholas G
     private JScrollPane scrollPane1;
-    public static JTable table;
+    static JTable table;
     private JToolBar toolBar1;
     private JButton buttonAdd;
     private JButton buttonDelete;

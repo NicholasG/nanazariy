@@ -97,7 +97,7 @@ public class AddNewDeveloper extends JDialog {
     }
 
     private void textFieldPhoneKeyTyped( KeyEvent e ) {
-        if ( !Character.isDigit( e.getKeyCode() ) && e.getKeyChar() != KeyEvent.VK_BACK_SPACE ) {
+        if ( !Character.isDigit( e.getKeyChar() ) && e.getKeyChar() != KeyEvent.VK_BACK_SPACE ) {
             JOptionPane.showMessageDialog( null, "Only numbers!" );
             e.consume();
         }
